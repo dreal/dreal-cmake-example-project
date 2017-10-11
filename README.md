@@ -39,6 +39,8 @@ Following the above setup, please run the following to build and run
 the example project.
 
 ```bash
+git clone https://github.com/dreal/dreal-cmake-example-project.git
+cd dreal-cmake-example-project
 mkdir build
 cd build
 cmake ../
