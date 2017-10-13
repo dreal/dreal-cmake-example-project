@@ -15,3 +15,4 @@ link_directories(${DREAL_LIBRARY_DIRS})
 add_definitions(${DREAL_DEFINITIONS})
 add_executable(check_sat check_sat.cc)
 target_link_libraries(check_sat ${DREAL_LIBRARIES})
+
