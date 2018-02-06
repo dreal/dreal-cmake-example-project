@@ -1,0 +1,48 @@
+sudo: required
+dist: trusty
+language: cpp
+
+env:
+  global:
+    - /usr/local/bin:$PATH
+
+cache:
+  directories:
+    - $HOME/.bazel-output-base
+    - $HOME/Library/Caches/Homebrew
+
+matrix:
+    - compiler: gcc
+      addons:
+        apt:
+          sources: ['ubuntu-toolchain-r-test']
+          packages: ['g++-5']
+      env:
+        - COMPILER="g++-5"
+	
+  include:
+    - os: osx
+      osx_image: xcode9
+      compiler: clang
+      env:
+        - COMPILER="clang++"
+
+install:
+  - if [ "${TRAVIS_OS_NAME}" == "linux" ]; then
+      sudo add-apt-repository ppa:dreal/dreal -y;
+      sudo apt update;
+      sudo apt install autoconf automake bison coinor-libclp-dev flex libtool pkg-config libibex-dev libnlopt-dev;
+      wget https://dl.bintray.com/dreal/dreal/dreal_4.18.01.3_amd64.deb;
+      sudo dpkg -i dreal_4.18.01.3_amd64.deb;
+    fi
+  - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then
+      brew update;
+      brew install dreal/dreal/dreal;
+    fi
+
+script:
+  - mkdir build
+  - cd build
+  - cmake -DCMAKE_CXX_COMPILER=${COMPILER} ../
+  - make           
+  - ./check_sat    
