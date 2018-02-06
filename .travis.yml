@@ -12,6 +12,7 @@ cache:
     - $HOME/Library/Caches/Homebrew
 
 matrix:
+  include:
     - compiler: gcc
       addons:
         apt:
@@ -20,7 +21,6 @@ matrix:
       env:
         - COMPILER="g++-5"
 	
-  include:
     - os: osx
       osx_image: xcode9
       compiler: clang
