@@ -7,10 +7,10 @@
 # DREAL_DEFINITIONS - Compiler flags for dReal.
 
 if(APPLE)
-  list(APPEND CMAKE_APPBUNDLE_PATH "/usr/local/opt/ibex@2.6.5/share/pkgconfig")
+  set(ENV{PKG_CONFIG_PATH} "/usr/local/opt/ibex@2.6.5/share/pkgconfig:$ENV{PKG_CONFIG_PATH}")
 endif(APPLE)
 if(UNIX)
-  set(ENV{PKG_CONFIG_PATH} "/opt/dreal/4.18.01.3/lib/pkgconfig:/opt/libibex/2.6.5/share/pkgconfig:$ENV{PKG_CONFIG_PATH}")
+  set(ENV{PKG_CONFIG_PATH} "/opt/dreal/4.18.02.1/lib/pkgconfig:/opt/libibex/2.6.5/share/pkgconfig:$ENV{PKG_CONFIG_PATH}")
 endif(UNIX)
 
 find_package(PkgConfig)

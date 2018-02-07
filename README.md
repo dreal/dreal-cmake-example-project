@@ -27,8 +27,8 @@ sudo add-apt-repository ppa:dreal/dreal -y
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
 sudo apt update
 sudo apt install bison coinor-libclp-dev flex pkg-config libibex-dev libnlopt-dev
-wget https://dl.bintray.com/dreal/dreal/dreal_4.18.01.3_amd64.deb
-sudo dpkg -i dreal_4.18.01.3_amd64.deb
+wget https://dl.bintray.com/dreal/dreal/dreal_4.18.02.1_amd64.deb
+sudo dpkg -i dreal_4.18.02.1_amd64.deb
 ```
 
 
