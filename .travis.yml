@@ -19,12 +19,14 @@ matrix:
           sources: ['ubuntu-toolchain-r-test']
           packages: ['g++-5']
       env:
-        - COMPILER="g++-5"
+        - CXX_COMPILER="g++-5"
+        - C_COMPILER="gcc-5"
     - os: osx
       osx_image: xcode9
       compiler: clang
       env:
-        - COMPILER="clang++"
+        - CXX_COMPILER="clang++"
+        - C_COMPILER="clang"
 
 install:
   - if [ "${TRAVIS_OS_NAME}" == "linux" ]; then
@@ -36,12 +38,20 @@ install:
     fi
   - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then
       brew update;
-      brew install dreal/dreal/dreal;
+      brew install dreal/dreal/dreal || true;
     fi
 
 script:
   - mkdir build
   - cd build
-  - cmake -DCMAKE_CXX_COMPILER=${COMPILER} ../
+  - cmake -DCMAKE_C_COMPILER=${C_COMPILER} -DCMAKE_CXX_COMPILER=${CXX_COMPILER} ../
   - make           
-  - ./check_sat    
+  - ./check_sat
+
+notifications:
+  recipients:
+    - soonho.kong@gmail.com
+  email:
+    on_success: change
+    on_failure: always
+
