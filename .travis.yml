@@ -29,7 +29,7 @@ matrix:
         - C_COMPILER="clang"
 
 install:
-  - export DREAL_VERSION=4.18.02.3
+  - export DREAL_VERSION=4.18.02.3_14.04
   - if [ "${TRAVIS_OS_NAME}" == "linux" ]; then
       sudo add-apt-repository ppa:dreal/dreal -y;
       sudo apt update;
