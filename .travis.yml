@@ -29,11 +29,11 @@ matrix:
         - C_COMPILER="clang"
 
 install:
-  - export DREAL_VERSION=4.18.02.3_14.04
+  - export DREAL_VERSION=4.18.03.1
   - if [ "${TRAVIS_OS_NAME}" == "linux" ]; then
       sudo add-apt-repository ppa:dreal/dreal -y;
       sudo apt update;
-      sudo apt install autoconf automake bison coinor-libclp-dev flex libtool pkg-config libibex-dev libnlopt-dev;
+      sudo apt install coinor-libclp-dev pkg-config libibex-dev libnlopt-dev;
       wget https://dl.bintray.com/dreal/dreal/dreal_${DREAL_VERSION}_amd64.deb;
       sudo dpkg -i dreal_${DREAL_VERSION}_amd64.deb;
     fi

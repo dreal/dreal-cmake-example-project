@@ -20,7 +20,7 @@ brew install dreal/dreal/dreal
 ```
 
 
-Ubuntu 16.04
+Ubuntu 14.04/16.04
 ------------
 
 ```bash
@@ -28,22 +28,9 @@ sudo apt install -y software-properties-common  # for add-apt-repository
 sudo add-apt-repository ppa:dreal/dreal -y
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
 sudo apt update
-sudo apt install bison coinor-libclp-dev flex pkg-config libibex-dev libnlopt-dev
-wget https://dl.bintray.com/dreal/dreal/dreal_4.18.02.3_16.04_amd64.deb
-sudo dpkg -i dreal_4.18.02.3_16.04_amd64.deb
-```
-
-Ubuntu 14.04
-------------
-
-```bash
-sudo apt install -y software-properties-common  # for add-apt-repository
-sudo add-apt-repository ppa:dreal/dreal -y
-sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
-sudo apt update
-sudo apt install bison coinor-libclp-dev flex pkg-config libibex-dev libnlopt-dev
-wget https://dl.bintray.com/dreal/dreal/dreal_4.18.02.3_14.04_amd64.deb
-sudo dpkg -i dreal_4.18.02.3_14.04_amd64.deb
+sudo apt install pkg-config coinor-libclp-dev libibex-dev libnlopt-dev
+wget https://dl.bintray.com/dreal/dreal/dreal_4.18.03.1_amd64.deb
+sudo dpkg -i dreal_4.18.03.1_amd64.deb
 ```
 
 CMake Build
