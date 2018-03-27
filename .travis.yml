@@ -22,20 +22,21 @@ matrix:
         - CXX_COMPILER="g++-5"
         - C_COMPILER="gcc-5"
     - os: osx
-      osx_image: xcode9
+      osx_image: xcode9.2  # macOS-10.12
+      compiler: clang
+      env:
+        - CXX_COMPILER="clang++"
+        - C_COMPILER="clang"
+    - os: osx
+      osx_image: xcode9.3beta  # macOS-10.13
       compiler: clang
       env:
         - CXX_COMPILER="clang++"
         - C_COMPILER="clang"
 
 install:
-  - export DREAL_VERSION=4.18.03.1
   - if [ "${TRAVIS_OS_NAME}" == "linux" ]; then
-      sudo add-apt-repository ppa:dreal/dreal -y;
-      sudo apt update;
-      sudo apt install coinor-libclp-dev pkg-config libibex-dev libnlopt-dev;
-      wget https://dl.bintray.com/dreal/dreal/dreal_${DREAL_VERSION}_amd64.deb;
-      sudo dpkg -i dreal_${DREAL_VERSION}_amd64.deb;
+      curl -s https://raw.githubusercontent.com/dreal/dreal4/master/setup/ubuntu/14.04/install.sh | sudo bash;
     fi
   - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then
       brew update;
@@ -55,4 +56,3 @@ notifications:
   email:
     on_success: change
     on_failure: always
-
