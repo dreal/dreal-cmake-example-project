@@ -10,8 +10,8 @@ You need to install [dReal4](https://github.com/dreal/dreal4) in your
 system. We also rely on
 [pkg-config](https://www.freedesktop.org/wiki/Software/pkg-config).
 
-macOS 10.12/10.13
------
+macOS 10.13/10.12/10.11
+-----------------------
 
 We use [homebrew](https://brew.sh).
 
@@ -20,24 +20,25 @@ brew install dreal/dreal/dreal
 ```
 
 
-Ubuntu 14.04/16.04
+Ubuntu 16.04
 ------------
 
 ```bash
-sudo apt install -y software-properties-common  # for add-apt-repository
-sudo add-apt-repository ppa:dreal/dreal -y
-sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
-sudo apt update
-sudo apt install pkg-config coinor-libclp-dev libibex-dev libnlopt-dev
-wget https://dl.bintray.com/dreal/dreal/dreal_4.18.03.1_amd64.deb
-sudo dpkg -i dreal_4.18.03.1_amd64.deb
+curl -s https://raw.githubusercontent.com/dreal/dreal4/master/setup/ubuntu/16.04/install_prereqs.sh | sudo bash
 ```
+
+Ubuntu 14.04
+------------
+
+```bash
+curl -s https://raw.githubusercontent.com/dreal/dreal4/master/setup/ubuntu/14.04/install_prereqs.sh | sudo bash
+```
+
 
 CMake Build
 ===========
 
-Following the above setup, please run the following to build and run
-the example project.
+Run the following to build and run the example project.
 
 ```bash
 git clone https://github.com/dreal/dreal-cmake-example-project.git
