@@ -20,18 +20,11 @@ brew install dreal/dreal/dreal
 ```
 
 
-Ubuntu 16.04
+Ubuntu 18.04/16.04/14.04
 ------------
 
 ```bash
-curl -s https://raw.githubusercontent.com/dreal/dreal4/master/setup/ubuntu/16.04/install_prereqs.sh | sudo bash
-```
-
-Ubuntu 14.04
-------------
-
-```bash
-curl -s https://raw.githubusercontent.com/dreal/dreal4/master/setup/ubuntu/14.04/install_prereqs.sh | sudo bash
+curl -s https://raw.githubusercontent.com/dreal/dreal4/master/setup/ubuntu/`lsb_release -r -s`/install.sh | sudo bash
 ```
 
 
