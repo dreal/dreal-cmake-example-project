@@ -1,5 +1,5 @@
 sudo: required
-dist: trusty
+dist: xenial
 language: cpp
 
 env:
@@ -16,8 +16,11 @@ matrix:
     - compiler: gcc
       addons:
         apt:
-          sources: ['ubuntu-toolchain-r-test']
-          packages: ['g++-5']
+          update: true
+          sources:
+          - sourceline: 'ppa:ubuntu-toolchain-r/test'
+          packages:
+          - g++-5
       env:
         - CXX_COMPILER="g++-5"
         - C_COMPILER="gcc-5"
@@ -37,7 +40,7 @@ matrix:
 install:
   - if [ "${TRAVIS_OS_NAME}" == "linux" ]; then
       curl -s https://raw.githubusercontent.com/dreal/dreal4/master/setup/ubuntu/update_expired_keys.sh | sudo bash;
-      curl -s https://raw.githubusercontent.com/dreal/dreal4/master/setup/ubuntu/14.04/install.sh | sudo bash;
+      curl -s https://raw.githubusercontent.com/dreal/dreal4/master/setup/ubuntu/16.04/install.sh | sudo bash;
     fi
   - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then
       brew update;
