@@ -7,9 +7,8 @@
 # DREAL_DEFINITIONS - Compiler flags for dReal.
 
 if(APPLE)
-  set(ENV{PKG_CONFIG_PATH} "/usr/local/opt/ibex@2.7.2/share/pkgconfig:$ENV{PKG_CONFIG_PATH}")
-  # TODO(soonho): remove this line when the transition is completed.
   set(ENV{PKG_CONFIG_PATH} "/usr/local/opt/ibex@2.6.5/share/pkgconfig:$ENV{PKG_CONFIG_PATH}")
+  set(ENV{PKG_CONFIG_PATH} "/usr/local/opt/ibex@2.7.4/share/pkgconfig:$ENV{PKG_CONFIG_PATH}")
 endif(APPLE)
 
 if(UNIX AND NOT APPLE)
@@ -18,6 +17,7 @@ if(UNIX AND NOT APPLE)
   # last element (-1) to pick the latest.
   list(GET DREAL_PKG_CONFIG_PATH -1 DREAL_PKG_CONFIG_PATH)
   set(ENV{PKG_CONFIG_PATH} "${DREAL_PKG_CONFIG_PATH}:/opt/libibex/2.7.2/share/pkgconfig:$ENV{PKG_CONFIG_PATH}")
+  set(ENV{PKG_CONFIG_PATH} "${DREAL_PKG_CONFIG_PATH}:/opt/libibex/2.7.4/share/pkgconfig:$ENV{PKG_CONFIG_PATH}")
 endif(UNIX AND NOT APPLE)
 
 find_package(PkgConfig)
