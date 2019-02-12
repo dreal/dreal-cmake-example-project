@@ -35,6 +35,12 @@ matrix:
       env:
         - CXX_COMPILER="clang++"
         - C_COMPILER="clang"
+    - os: osx
+      osx_image: xcode10.2  # macOS-10.14
+      compiler: clang
+      env:
+        - CXX_COMPILER="clang++"
+        - C_COMPILER="clang"
 
 install:
   - if [ "${TRAVIS_OS_NAME}" == "linux" ]; then
