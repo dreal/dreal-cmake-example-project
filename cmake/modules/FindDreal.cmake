@@ -6,19 +6,31 @@
 # DREAL_LIBRARIES - dReal library names.
 # DREAL_DEFINITIONS - Compiler flags for dReal.
 
+# ===========
+#    IBEX
+# ===========
 if(APPLE)
-  set(ENV{PKG_CONFIG_PATH} "/usr/local/opt/ibex@2.6.5/share/pkgconfig:$ENV{PKG_CONFIG_PATH}")
-  set(ENV{PKG_CONFIG_PATH} "/usr/local/opt/ibex@2.7.4/share/pkgconfig:$ENV{PKG_CONFIG_PATH}")
+  set(IBEX_SEARCH_PATH "/usr/local/opt/ibex*/share/pkgconfig")
 endif(APPLE)
+if(UNIX)
+  set(IBEX_SEARCH_PATH "/opt/libibex/*/share/pkgconfig")
+endif(UNIX)
+file(GLOB IBEX_PKG_CONFIG_PATH "${IBEX_SEARCH_PATH}")
+# The result of file-glob is sorted lexicographically. We pick the
+# last element (-1) to pick the latest.
+list(GET IBEX_PKG_CONFIG_PATH -1 IBEX_PKG_CONFIG_PATH)
+set(ENV{PKG_CONFIG_PATH} "${IBEX_PKG_CONFIG_PATH}:$ENV{PKG_CONFIG_PATH}")
 
-if(UNIX AND NOT APPLE)
+# ===========
+#    dReal
+# ===========
+if(UNIX)
   file(GLOB DREAL_PKG_CONFIG_PATH "/opt/dreal/*/lib/pkgconfig")
   # The result of file-glob is sorted lexicographically. We pick the
   # last element (-1) to pick the latest.
   list(GET DREAL_PKG_CONFIG_PATH -1 DREAL_PKG_CONFIG_PATH)
-  set(ENV{PKG_CONFIG_PATH} "${DREAL_PKG_CONFIG_PATH}:/opt/libibex/2.7.2/share/pkgconfig:$ENV{PKG_CONFIG_PATH}")
-  set(ENV{PKG_CONFIG_PATH} "${DREAL_PKG_CONFIG_PATH}:/opt/libibex/2.7.4/share/pkgconfig:$ENV{PKG_CONFIG_PATH}")
-endif(UNIX AND NOT APPLE)
+  set(ENV{PKG_CONFIG_PATH} "${DREAL_PKG_CONFIG_PATH}:$ENV{PKG_CONFIG_PATH}")
+endif(UNIX)
 
 find_package(PkgConfig)
 pkg_check_modules(DREAL dreal)
