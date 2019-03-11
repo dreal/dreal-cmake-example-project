@@ -45,7 +45,7 @@ matrix:
 install:
   - if [ "${TRAVIS_OS_NAME}" == "linux" ]; then
       curl -s https://raw.githubusercontent.com/dreal/dreal4/master/setup/ubuntu/update_expired_keys.sh | sudo bash;
-      curl -s https://raw.githubusercontent.com/dreal/dreal4/master/setup/ubuntu/16.04/install.sh | sudo bash;
+      curl -s https://raw.githubusercontent.com/dreal/dreal4/master/setup/ubuntu/$(lsb_release -r -s)/install.sh | sudo bash;
     fi
   - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then
       brew tap dreal/dreal;

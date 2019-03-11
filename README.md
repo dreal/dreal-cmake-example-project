@@ -10,8 +10,8 @@ You need to install [dReal4](https://github.com/dreal/dreal4) in your
 system. We also rely on
 [pkg-config](https://www.freedesktop.org/wiki/Software/pkg-config).
 
-macOS 10.14/10.13/10.12
------------------------
+macOS 10.14 / 10.13 / 10.12
+---------------------------
 
 We use [homebrew](https://brew.sh).
 
@@ -20,11 +20,11 @@ brew install dreal/dreal/dreal
 ```
 
 
-Ubuntu 18.04/16.04/14.04
-------------
+Ubuntu 18.04 / 16.04 / 14.04
+----------------------------
 
 ```bash
-curl -s https://raw.githubusercontent.com/dreal/dreal4/master/setup/ubuntu/`lsb_release -r -s`/install.sh | sudo bash
+curl -s https://raw.githubusercontent.com/dreal/dreal4/master/setup/ubuntu/$(lsb_release -r -s)/install.sh | sudo bash
 ```
 
 
