@@ -12,9 +12,9 @@
 if(APPLE)
   set(IBEX_SEARCH_PATH "/usr/local/opt/ibex*/share/pkgconfig")
 endif(APPLE)
-if(UNIX)
+if(UNIX AND NOT APPLE)
   set(IBEX_SEARCH_PATH "/opt/libibex/*/share/pkgconfig")
-endif(UNIX)
+endif()
 file(GLOB IBEX_PKG_CONFIG_PATH "${IBEX_SEARCH_PATH}")
 # The result of file-glob is sorted lexicographically. We pick the
 # last element (-1) to pick the latest.
@@ -24,13 +24,13 @@ set(ENV{PKG_CONFIG_PATH} "${IBEX_PKG_CONFIG_PATH}:$ENV{PKG_CONFIG_PATH}")
 # ===========
 #    dReal
 # ===========
-if(UNIX)
+if(UNIX AND NOT APPLE)
   file(GLOB DREAL_PKG_CONFIG_PATH "/opt/dreal/*/lib/pkgconfig")
   # The result of file-glob is sorted lexicographically. We pick the
   # last element (-1) to pick the latest.
   list(GET DREAL_PKG_CONFIG_PATH -1 DREAL_PKG_CONFIG_PATH)
   set(ENV{PKG_CONFIG_PATH} "${DREAL_PKG_CONFIG_PATH}:$ENV{PKG_CONFIG_PATH}")
-endif(UNIX)
+endif()
 
 find_package(PkgConfig)
 pkg_check_modules(DREAL dreal)
