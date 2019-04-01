@@ -1,5 +1,4 @@
 #include <ostream>
-#include <experimental/optional>
 
 #include "dreal/dreal.h"
 
@@ -8,7 +7,6 @@ namespace {
 
 using std::cout;
 using std::endl;
-using std::experimental::optional;
 
 // Checks the delta-satisfiability of formula `f`.
 //
