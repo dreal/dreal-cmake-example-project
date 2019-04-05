@@ -20,8 +20,8 @@ brew install dreal/dreal/dreal
 ```
 
 
-Ubuntu 18.04 / 16.04 / 14.04
-----------------------------
+Ubuntu 18.04 / 16.04
+--------------------
 
 ```bash
 curl -s https://raw.githubusercontent.com/dreal/dreal4/master/setup/ubuntu/$(lsb_release -r -s)/install.sh | sudo bash
