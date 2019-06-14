@@ -7,6 +7,14 @@
 # DREAL_DEFINITIONS - Compiler flags for dReal.
 
 # ===========
+#    CLP
+# ===========
+if(APPLE)
+  set(CLP_PKG_CONFIG_PATH "/usr/local/opt/clp@1.17/lib/pkgconfig")
+  set(ENV{PKG_CONFIG_PATH} "${CLP_PKG_CONFIG_PATH}:$ENV{PKG_CONFIG_PATH}")
+endif(APPLE)
+
+# ===========
 #    IBEX
 # ===========
 if(APPLE)
