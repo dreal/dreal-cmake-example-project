@@ -10,8 +10,8 @@ You need to install [dReal4](https://github.com/dreal/dreal4) in your
 system. We also rely on
 [pkg-config](https://www.freedesktop.org/wiki/Software/pkg-config).
 
-macOS 10.14 / 10.13 / 10.12
----------------------------
+macOS 10.14 / 10.13
+-------------------
 
 We use [homebrew](https://brew.sh).
 
