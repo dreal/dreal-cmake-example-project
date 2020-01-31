@@ -1,11 +1,6 @@
 sudo: required
-dist: xenial
-group: travis_latest
+dist: bionic
 language: cpp
-
-env:
-  global:
-    - /usr/local/bin:$PATH
 
 cache:
   directories:
@@ -19,22 +14,22 @@ matrix:
         apt:
           update: true
           packages:
-          - g++-5
+          - g++-7
       env:
-        - CXX_COMPILER="g++-5"
-        - C_COMPILER="gcc-5"
+        - CXX="g++-7"
+        - CC="gcc-7"
     - os: osx
       osx_image: xcode9.4  # macOS-10.13
       compiler: clang
       env:
-        - CXX_COMPILER="clang++"
-        - C_COMPILER="clang"
+        - CXX="clang++"
+        - CC="clang"
     - os: osx
       osx_image: xcode10.2  # macOS-10.14
       compiler: clang
       env:
-        - CXX_COMPILER="clang++"
-        - C_COMPILER="clang"
+        - CXX="clang++"
+        - CC="clang"
 
 install:
   - if [ "${TRAVIS_OS_NAME}" == "linux" ]; then
@@ -50,7 +45,7 @@ install:
 script:
   - mkdir build
   - cd build
-  - cmake -DCMAKE_C_COMPILER=${C_COMPILER} -DCMAKE_CXX_COMPILER=${CXX_COMPILER} ../
+  - cmake -DCMAKE_C_COMPILER=${CC} -DCMAKE_CXX_COMPILER=${CXX} ../
   - make           
   - ./check_sat
 
