@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Find dReal
 # ----------
 list (APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
-find_package(Dreal REQUIRED)
+find_package(DREAL REQUIRED)
 
 include_directories(${DREAL_INCLUDE_DIRS})
 link_directories(${DREAL_LIBRARY_DIRS})
