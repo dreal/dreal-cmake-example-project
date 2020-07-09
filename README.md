@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/dreal/dreal-cmake-example-project.svg?branch=master)](https://travis-ci.org/dreal/dreal-cmake-example-project)
+![CI](https://github.com/dreal/dreal-cmake-example-project/workflows/CI/badge.svg)
 
 An example cmake project to show you how to use the system-installed
 dReal as a library in a Cmake project.

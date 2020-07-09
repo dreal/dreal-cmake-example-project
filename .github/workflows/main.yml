@@ -1,0 +1,111 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  schedule:
+    - cron: "4 0 * * *"
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  macos_catalina_build_and_test:
+    name: macos catalina build and test
+    runs-on: macos-10.15
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: install pkg-config
+        run: brew install pkg-config
+      - name: setup
+        shell: zsh -efuo pipefail {0}
+        run: curl -s https://raw.githubusercontent.com/dreal/dreal4/master/setup/mac/install.sh | bash
+      - name: Create Build Environment
+        run: cmake -E make_directory ${{runner.workspace}}/build
+      - name: Configure CMake
+        working-directory: ${{runner.workspace}}/build
+        shell: bash
+        run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+      - name: Build
+        working-directory: ${{runner.workspace}}/build
+        shell: bash
+        run: cmake --build . --config $BUILD_TYPE
+      - name: Test
+        working-directory: ${{runner.workspace}}/build
+        shell: bash
+        run: ./check_sat
+
+  ubuntu_focal_install:
+    name: ubuntu-20.04 install
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: setup
+        run: curl -s https://raw.githubusercontent.com/dreal/dreal4/master/setup/ubuntu/20.04/install.sh | sudo bash
+        shell: bash
+      - name: Create Build Environment
+        run: cmake -E make_directory ${{runner.workspace}}/build
+      - name: Configure CMake
+        working-directory: ${{runner.workspace}}/build
+        shell: bash
+        run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+      - name: Build
+        working-directory: ${{runner.workspace}}/build
+        shell: bash
+        run: cmake --build . --config $BUILD_TYPE
+      - name: Test
+        working-directory: ${{runner.workspace}}/build
+        shell: bash
+        run: ./check_sat
+
+  ubuntu_bionic_install:
+    name: ubuntu 18.04 install
+    runs-on: ubuntu-18.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: setup
+        run: curl -s https://raw.githubusercontent.com/dreal/dreal4/master/setup/ubuntu/18.04/install.sh | sudo bash
+        shell: bash
+      - name: Create Build Environment
+        run: cmake -E make_directory ${{runner.workspace}}/build
+      - name: Configure CMake
+        working-directory: ${{runner.workspace}}/build
+        shell: bash
+        run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+      - name: Build
+        working-directory: ${{runner.workspace}}/build
+        shell: bash
+        run: cmake --build . --config $BUILD_TYPE
+      - name: Test
+        working-directory: ${{runner.workspace}}/build
+        shell: bash
+        run: ./check_sat
+
+  ubuntu_trusty_install:
+    name: ubuntu 16.04 install
+    runs-on: ubuntu-16.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: setup
+        run: curl -s https://raw.githubusercontent.com/dreal/dreal4/master/setup/ubuntu/16.04/install.sh | sudo bash
+        shell: bash
+      - name: Create Build Environment
+        run: cmake -E make_directory ${{runner.workspace}}/build
+      - name: Configure CMake
+        working-directory: ${{runner.workspace}}/build
+        shell: bash
+        run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+      - name: Build
+        working-directory: ${{runner.workspace}}/build
+        shell: bash
+        run: cmake --build . --config $BUILD_TYPE
+      - name: Test
+        working-directory: ${{runner.workspace}}/build
+        shell: bash
+        run: ./check_sat
