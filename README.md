@@ -16,6 +16,7 @@ macOS 10.15 / 10.14 / 10.13
 We use [homebrew](https://brew.sh).
 
 ```bash
+brew install pkg-config
 brew install dreal/dreal/dreal
 ```
 
