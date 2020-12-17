@@ -18,11 +18,32 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: remove-openssl-python2
-        run: brew uninstall openssl@1.0.2t; brew untap local/openssl; brew uninstall python@2.7.17; brew untap local/python2 # https://github.com/actions/virtual-environments/issues/1811
+      - name: install pkg-config
+        run: brew install pkg-config
+      - name: setup
         shell: zsh -efuo pipefail {0}
-        env:
-          HOMEBREW_NO_AUTO_UPDATE: "1"
+        run: curl -s https://raw.githubusercontent.com/dreal/dreal4/master/setup/mac/install.sh | bash
+      - name: Create Build Environment
+        run: cmake -E make_directory ${{runner.workspace}}/build
+      - name: Configure CMake
+        working-directory: ${{runner.workspace}}/build
+        shell: bash
+        run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+      - name: Build
+        working-directory: ${{runner.workspace}}/build
+        shell: bash
+        run: cmake --build . --config $BUILD_TYPE
+      - name: Test
+        working-directory: ${{runner.workspace}}/build
+        shell: bash
+        run: ./check_sat
+
+  macos_bigsur_build_and_test:
+    name: macos big sur build and test
+    runs-on: macos-11.0
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
       - name: install pkg-config
         run: brew install pkg-config
       - name: setup
