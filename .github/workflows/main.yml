@@ -18,8 +18,6 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: install pkg-config
-        run: brew install pkg-config
       - name: setup
         shell: zsh -efuo pipefail {0}
         run: curl -s https://raw.githubusercontent.com/dreal/dreal4/master/setup/mac/install.sh | bash
@@ -44,8 +42,6 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: install pkg-config
-        run: brew install pkg-config
       - name: setup
         shell: zsh -efuo pipefail {0}
         run: curl -s https://raw.githubusercontent.com/dreal/dreal4/master/setup/mac/install.sh | bash
